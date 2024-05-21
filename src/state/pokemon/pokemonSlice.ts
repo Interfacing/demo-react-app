@@ -2,19 +2,21 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Pokemon } from "../../types/pokemonType";
 
 // Define the state interface for Pokémon data management
-interface PokemonState {
+interface PokedexState {
   loading: boolean;
   data: Pokemon[];
   error: string | null;
   limit: number;
+  offset: number;
 }
 
 // Initialize the state with default values
-const initialState: PokemonState = {
+const initialState: PokedexState = {
   loading: false,
   data: [],
   error: null,
   limit: 10,
+  offset: 0,
 };
 
 // Create a slice for Pokémon with actions and reducers
@@ -23,18 +25,19 @@ export const pokemonSlice = createSlice({
   initialState, // Initial state
   reducers: {
     // Action to start fetching Pokémon data
-    fetchPokemonStart(state, action: PayloadAction<number>) {
+    fetchPokedexStart(state, action: PayloadAction<number>) {
       state.loading = true;
       state.error = null;
       state.limit = action.payload;
+      state.offset = action.payload;
     },
     // Action to handle successful fetch of Pokémon data
-    fetchPokemonSuccess(state, action: PayloadAction<Pokemon[]>) {
+    fetchPokedexSuccess(state, action: PayloadAction<Pokemon[]>) {
       state.loading = false;
       state.data = action.payload;
     },
     // Action to handle failure in fetching Pokémon data
-    fetchPokemonFailure(state, action: PayloadAction<string>) {
+    fetchPokedexFailure(state, action: PayloadAction<string>) {
       state.loading = false;
       state.error = action.payload;
     },
@@ -42,5 +45,5 @@ export const pokemonSlice = createSlice({
 });
 
 // Export the actions to be used in components and sagas
-export const { fetchPokemonStart, fetchPokemonSuccess, fetchPokemonFailure } =
+export const { fetchPokedexStart, fetchPokedexSuccess, fetchPokedexFailure } =
   pokemonSlice.actions;

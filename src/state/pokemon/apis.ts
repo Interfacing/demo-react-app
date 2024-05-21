@@ -18,8 +18,11 @@ const fetchPokemonDetails = async (url: string): Promise<Pokemon> => {
 };
 
 // Function to fetch a list of Pokémon with detailed information
-export const fetchPokemon = async (limit: number = 10): Promise<Pokemon[]> => {
-  const response = await fetch(`${API_URL}?limit=${limit}`); // Fetch Pokémon list with a limit
+export const fetchPokedex = async (
+  limit: number = 10,
+  offset: number = 0
+): Promise<Pokemon[]> => {
+  const response = await fetch(`${API_URL}?limit=${limit}&offset=${offset}`); // Fetch Pokémon list with a limit
   if (!response.ok) {
     throw new Error("Failed to fetch Pokémon");
   }

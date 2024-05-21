@@ -1,48 +1,34 @@
-import React from 'react';
-import './button.css';
+import { Button as StyledButton } from "./Button.styles";
 
 interface ButtonProps {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
-   * What background color to use
-   */
-  backgroundColor?: string;
-  /**
-   * How large should the button be?
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * Button contents
-   */
   label: string;
-  /**
-   * Optional click handler
-   */
   onClick?: () => void;
+  primary?: boolean;
+  secondary?: boolean;
+  backgroundColor?: string;
+  size?: "small" | "medium" | "large";
+  disabled?: boolean;
 }
 
-/**
- * Primary UI component for user interaction
- */
 export const Button = ({
-  primary = false,
-  size = 'medium',
-  backgroundColor,
   label,
-  ...props
+  onClick,
+  primary,
+  secondary,
+  size = "medium",
+  disabled = false,
+  backgroundColor,
 }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+    <StyledButton
       style={{ backgroundColor }}
-      {...props}
+      onClick={onClick}
+      primary={primary}
+      secondary={secondary}
+      size={size}
+      disabled={disabled}
     >
       {label}
-    </button>
+    </StyledButton>
   );
 };

@@ -1,59 +1,92 @@
-import { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { RootState } from "../../state/rootReducer";
-import { fetchPokemonStart } from "../../state/pokemon/pokemonSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { Card, CardWrapper } from "../../components/Card/Card.styles";
+import { Button } from "../../components/Button/Button";
 import { Pokemon } from "../../types/pokemonType";
 import { capitalizeFirstLetter, formatId } from "../../utils/stringUtils";
+import {
+  PokemonImage,
+  PokemonName,
+  PokemonType,
+  PokemonTypesContainer,
+} from "./Pokedex.styles";
 
 export const Pokedex = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { data } = useSelector((state: RootState) => state.pokemon);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hoveredPokemon, setHoveredPokemon] = useState<number | null>(null);
 
-  useEffect(() => {
-    dispatch(fetchPokemonStart(151));
-  }, [dispatch]);
+  const itemsPerPage = 36;
+
+  // Calculate the items to display on the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
-    <div>
-      {/* <Button
-        onClick={() => setCount((count) => count + 1)}
-        label={`count is ${count}`}
-        primary
-      /> */}
-
-      <ul>
-        <ul>
-          {data.map((pokemon: Pokemon, index: number) => (
-            <li key={index}>
-              <h2>
-                {formatId(pokemon.id)} {capitalizeFirstLetter(pokemon.name)}
-              </h2>
-              {pokemon.sprites?.front_default && (
-                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-              )}
-              <p>
-                <strong>Abilities:</strong>
-                {pokemon.abilities
-                  ?.map((ability) => ability.ability.name)
-                  .join(", ")}
-              </p>
-              <p>
-                <strong>Types:</strong>
-                {pokemon.types?.map((type) => type.type.name).join(", ")}
-              </p>
-              <p>
-                <strong>Height:</strong> {pokemon.height}
-              </p>
-              <p>
-                <strong>Weight:</strong> {pokemon.weight}
-              </p>
-              <p>
-                <strong>Base Experience:</strong> {pokemon.base_experience}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </ul>
-    </div>
+    <CardWrapper>
+      {currentItems?.map((pokemon: Pokemon, index: number) => (
+        <Card
+          key={index}
+          onClick={() => navigate(`/${pokemon.name}`)}
+          onMouseEnter={() => setHoveredPokemon(pokemon.id)}
+          onMouseLeave={() => setHoveredPokemon(null)}
+        >
+          <p>{formatId(pokemon.id)}</p>
+          {pokemon.sprites?.front_default && (
+            <PokemonImage
+              src={
+                hoveredPokemon === pokemon.id
+                  ? pokemon.sprites.back_default
+                  : pokemon.sprites.front_default
+              }
+              alt={pokemon.name}
+            />
+          )}
+          <PokemonName>{capitalizeFirstLetter(pokemon.name)}</PokemonName>
+          <PokemonTypesContainer>
+            {pokemon.types?.map((type, typeIndex) => (
+              <PokemonType key={typeIndex} type={type.type.name}>
+                {type.type.name}
+              </PokemonType>
+            ))}
+          </PokemonTypesContainer>
+        </Card>
+      ))}
+      <div>
+        <Button
+          label="Previous"
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          primary
+        />
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <Button
+          label="Next"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          primary
+        />
+      </div>
+    </CardWrapper>
   );
 };
