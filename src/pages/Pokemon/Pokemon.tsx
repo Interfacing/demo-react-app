@@ -1,9 +1,10 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Button } from "../../components/Button/Button";
-import { RootState } from "../../state/rootReducer";
-import { Pokemon as PokemonType } from "../../types/pokemonType";
-import { capitalizeFirstLetter, formatId } from "../../utils/stringUtils";
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Button } from '../../components/Button/Button';
+import { RootState } from '../../state/rootReducer';
+import { Pokemon as PokemonType } from '../../types/pokemonType';
+import { capitalizeFirstLetter, formatId } from '../../utils/stringUtils';
+import { Layout } from '../../components/Layout/Layout';
 
 export const Pokemon = () => {
   const navigate = useNavigate();
@@ -14,14 +15,12 @@ export const Pokemon = () => {
 
   // Find the specific Pokémon by name
   const pokemon: PokemonType | undefined = data.find(
-    (pokemon) => pokemon.name === name
+    (pokemon) => pokemon.name === name,
   );
 
-  console.log("pokemon: ", pokemon);
-
   return (
-    <div>
-      <Button label="Back" onClick={() => navigate("/")} primary />
+    <Layout>
+      <Button label="Back" onClick={() => navigate('/')} primary />
 
       {/* Pokémon Details */}
       {pokemon ? (
@@ -37,12 +36,12 @@ export const Pokemon = () => {
           </div>
           <p>Height: {pokemon.height}</p>
           <p>Weight: {pokemon.weight}</p>
-          <p>Types: {pokemon.types.map((type) => type.type.name).join(", ")}</p>
+          <p>Types: {pokemon.types.map((type) => type.type.name).join(', ')}</p>
           <p>
-            Abilities:{" "}
+            Abilities:
             {pokemon.abilities
               .map((ability) => ability.ability.name)
-              .join(", ")}
+              .join(', ')}
           </p>
           <p>Stats:</p>
           <ul>
@@ -56,6 +55,6 @@ export const Pokemon = () => {
       ) : (
         <p>Pokémon not found.</p>
       )}
-    </div>
+    </Layout>
   );
 };

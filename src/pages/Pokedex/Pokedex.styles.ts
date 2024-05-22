@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { getTypeColor } from "../../utils/typeColors";
+import styled from 'styled-components';
+import { getTypeColor } from '../../utils/typeColors';
 
 export const PokemonImage = styled.img`
   width: 100%;
@@ -7,7 +7,7 @@ export const PokemonImage = styled.img`
 `;
 
 export const PokemonName = styled.h2`
-  font-size: 1.5rem;
+  font-size: var(--font-size-base);
   color: #333;
   margin: 10px 0;
 `;
@@ -25,5 +25,5 @@ export const PokemonType = styled.span<{ type: string }>`
   color: white;
   padding: 5px 10px;
   text-transform: capitalize;
-  font-size: 0.9rem;
+  font-size: var(--font-size-base);
 `;
