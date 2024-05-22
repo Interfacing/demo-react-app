@@ -1,69 +1,24 @@
-import "./header.css";
 import { Button } from "../Button/Button";
+import { useTranslation } from "react-i18next";
+import { Header as StyledHeader } from "./Header.styles";
 
-type User = {
-  name: string;
-};
+export const Header = () => {
+  const { i18n } = useTranslation();
 
-interface HeaderProps {
-  user?: User;
-  onLogin?: () => void;
-  onLogout?: () => void;
-  onCreateAccount?: () => void;
-}
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
-export const Header = ({
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
-}: HeaderProps) => (
-  <header>
-    <div className="storybook-header">
+  return (
+    <StyledHeader>
+      <div>DEMO REACT APP</div>
       <div>
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g fill="none" fillRule="evenodd">
-            <path
-              d="M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z"
-              fill="#FFF"
-            />
-            <path
-              d="M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z"
-              fill="#555AB9"
-            />
-            <path
-              d="M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z"
-              fill="#91BAF8"
-            />
-          </g>
-        </svg>
-        <h1>Acme</h1>
-      </div>
-      <div>
-        {user ? (
-          <>
-            <span className="welcome">
-              Welcome, <b>{user.name}</b>!
-            </span>
-            <Button size="small" onClick={onLogout} label="Log out" />
-          </>
+        {i18n.language === "en" ? (
+          <Button label="FR" onClick={() => changeLanguage("fr")} />
         ) : (
-          <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button
-              primary
-              size="small"
-              onClick={onCreateAccount}
-              label="Sign up"
-            />
-          </>
+          <Button label="EN" onClick={() => changeLanguage("en")} />
         )}
       </div>
-    </div>
-  </header>
-);
+    </StyledHeader>
+  );
+};
