@@ -4,6 +4,7 @@ import { Button } from "../../components/Button/Button";
 import { RootState } from "../../state/rootReducer";
 import { Pokemon as PokemonType } from "../../types/pokemonType";
 import { capitalizeFirstLetter, formatId } from "../../utils/stringUtils";
+import { Layout } from "../../components/Layout/Layout";
 
 export const Pokemon = () => {
   const navigate = useNavigate();
@@ -17,10 +18,8 @@ export const Pokemon = () => {
     (pokemon) => pokemon.name === name
   );
 
-  console.log("pokemon: ", pokemon);
-
   return (
-    <div>
+    <Layout>
       <Button label="Back" onClick={() => navigate("/")} primary />
 
       {/* Pokémon Details */}
@@ -39,7 +38,7 @@ export const Pokemon = () => {
           <p>Weight: {pokemon.weight}</p>
           <p>Types: {pokemon.types.map((type) => type.type.name).join(", ")}</p>
           <p>
-            Abilities:{" "}
+            Abilities:
             {pokemon.abilities
               .map((ability) => ability.ability.name)
               .join(", ")}
@@ -56,6 +55,6 @@ export const Pokemon = () => {
       ) : (
         <p>Pokémon not found.</p>
       )}
-    </div>
+    </Layout>
   );
 };

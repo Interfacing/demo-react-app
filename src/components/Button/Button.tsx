@@ -23,9 +23,9 @@ export const Button = ({
     <StyledButton
       style={{ backgroundColor }}
       onClick={onClick}
-      primary={primary}
-      secondary={secondary}
-      size={size}
+      $primary={primary}
+      $secondary={secondary}
+      $size={size}
       disabled={disabled}
     >
       {label}
