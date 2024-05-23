@@ -1,9 +1,9 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 interface StyledButtonProps {
   $primary?: boolean;
   $secondary?: boolean;
-  $size?: "small" | "medium" | "large";
+  $size?: 'small' | 'medium' | 'large';
 }
 
 export const Button = styled.button<StyledButtonProps>`
@@ -29,21 +29,21 @@ export const Button = styled.button<StyledButtonProps>`
     `}
 
   ${(props) =>
-    props.$size === "small" &&
+    props.$size === 'small' &&
     css`
       font-size: 12px;
       padding: 10px 16px;
     `}
 
   ${(props) =>
-    props.$size === "medium" &&
+    props.$size === 'medium' &&
     css`
       font-size: 14px;
       padding: 11px 20px;
     `}
 
   ${(props) =>
-    props.$size === "large" &&
+    props.$size === 'large' &&
     css`
       font-size: 16px;
       padding: 12px 24px;

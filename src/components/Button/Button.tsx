@@ -1,4 +1,4 @@
-import { Button as StyledButton } from "./Button.styles";
+import { Button as StyledButton } from './Button.styles';
 
 interface ButtonProps {
   label: string;
@@ -6,7 +6,7 @@ interface ButtonProps {
   primary?: boolean;
   secondary?: boolean;
   backgroundColor?: string;
-  size?: "small" | "medium" | "large";
+  size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
 }
 
@@ -15,7 +15,7 @@ export const Button = ({
   onClick,
   primary,
   secondary,
-  size = "medium",
+  size = 'medium',
   disabled = false,
   backgroundColor,
 }: ButtonProps) => {

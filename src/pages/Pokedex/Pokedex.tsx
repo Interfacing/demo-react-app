@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { RootState } from "../../state/rootReducer";
-import { Card, CardWrapper } from "../../components/Card/Card.styles";
-import { Button } from "../../components/Button/Button";
-import { Layout } from "../../components/Layout/Layout";
-import { Pokemon } from "../../types/pokemonType";
-import { capitalizeFirstLetter, formatId } from "../../utils/stringUtils";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { RootState } from '../../state/rootReducer';
+import { Card, CardWrapper } from '../../components/Card/Card.styles';
+import { Button } from '../../components/Button/Button';
+import { Layout } from '../../components/Layout/Layout';
+import { Pokemon } from '../../types/pokemonType';
+import { capitalizeFirstLetter, formatId } from '../../utils/stringUtils';
 import {
   PokemonImage,
   PokemonName,
   PokemonType,
   PokemonTypesContainer,
-} from "./Pokedex.styles";
+} from './Pokedex.styles';
 
 export const Pokedex = () => {
   const { t } = useTranslation();
@@ -45,7 +45,7 @@ export const Pokedex = () => {
 
   return (
     <Layout>
-      <p>{t("welcome")}</p>
+      <p>{t('welcome')}</p>
       <CardWrapper>
         {currentItems?.map((pokemon: Pokemon, index: number) => (
           <Card

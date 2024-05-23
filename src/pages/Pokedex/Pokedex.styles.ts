@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { getTypeColor } from "../../utils/typeColors";
+import styled from 'styled-components';
+import { getTypeColor } from '../../utils/typeColors';
 
 export const PokemonImage = styled.img`
   width: 100%;

@@ -1,6 +1,6 @@
-import { Button } from "../Button/Button";
-import { useTranslation } from "react-i18next";
-import { Header as StyledHeader } from "./Header.styles";
+import { Button } from '../Button/Button';
+import { useTranslation } from 'react-i18next';
+import { Header as StyledHeader } from './Header.styles';
 
 export const Header = () => {
   const { i18n } = useTranslation();
@@ -13,10 +13,10 @@ export const Header = () => {
     <StyledHeader>
       <div>DEMO REACT APP</div>
       <div>
-        {i18n.language === "en" ? (
-          <Button label="FR" onClick={() => changeLanguage("fr")} />
+        {i18n.language === 'en' ? (
+          <Button label="FR" onClick={() => changeLanguage('fr')} />
         ) : (
-          <Button label="EN" onClick={() => changeLanguage("en")} />
+          <Button label="EN" onClick={() => changeLanguage('en')} />
         )}
       </div>
     </StyledHeader>
