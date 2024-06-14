@@ -1,3 +1,12 @@
 {
-  "welcome": "Welcome to my application"
+  "welcome": "Welcome to my application",
+  "next": "Next",
+  "back": "Back",
+  "previous": "Previous",
+  "height": "Height",
+  "weight": "Weight",
+  "ability": "Abilities",
+  "pokedex": {
+    "description": "A Pokédex is a digital encyclopedia in the Pokémon world that provides detailed information about different Pokémon species, including their appearance, abilities, and evolutionary stages."
+  }
 }

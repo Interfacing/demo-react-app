@@ -9,6 +9,7 @@ import { Layout } from '../../components/Layout/Layout';
 import { Pokemon } from '../../types/pokemonType';
 import { capitalizeFirstLetter, formatId } from '../../utils/stringUtils';
 import {
+  ButtonWrapper,
   PokemonImage,
   PokemonName,
   PokemonType,
@@ -45,7 +46,7 @@ export const Pokedex = () => {
 
   return (
     <Layout>
-      <p>{t('welcome')}</p>
+      <p>{t('pokedex.description')}</p>
       <CardWrapper>
         {currentItems?.map((pokemon: Pokemon, index: number) => (
           <Card
@@ -75,22 +76,22 @@ export const Pokedex = () => {
             </PokemonTypesContainer>
           </Card>
         ))}
-        <div>
-          <Button
-            label="Previous"
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-          />
-          <span>
-            Page {currentPage} of {totalPages}
-          </span>
-          <Button
-            label="Next"
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-          />
-        </div>
       </CardWrapper>
+      <ButtonWrapper>
+        <Button
+          label={t('previous')}
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+        />
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <Button
+          label={t('next')}
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        />
+      </ButtonWrapper>
     </Layout>
   );
 };
