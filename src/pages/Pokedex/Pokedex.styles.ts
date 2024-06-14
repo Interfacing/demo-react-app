@@ -27,3 +27,10 @@ export const PokemonType = styled.span<{ type: string }>`
   text-transform: capitalize;
   font-size: var(--font-size-base);
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;

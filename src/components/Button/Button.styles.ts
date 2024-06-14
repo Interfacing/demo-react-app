@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { theme } from '../../styles/theme';
 
 interface StyledButtonProps {
   $primary?: boolean;
@@ -17,14 +18,14 @@ export const Button = styled.button<StyledButtonProps>`
     props.$primary &&
     css`
       color: white;
-      background-color: ${({ theme }) => theme.colors.primary};
+      background-color: ${theme.colors.primary};
     `}
 
   ${(props) =>
     props.$secondary &&
     css`
       color: #333;
-      background-color: ${({ theme }) => theme.colors.secondary};
+      background-color: ${theme.colors.secondary};
       box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
     `}
 

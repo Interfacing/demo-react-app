@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Button } from '../../components/Button/Button';
 import { RootState } from '../../state/rootReducer';
@@ -8,6 +9,7 @@ import { Layout } from '../../components/Layout/Layout';
 
 export const Pokemon = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { name } = useParams();
 
   // Select the Pokémon data from the Redux store
@@ -20,7 +22,7 @@ export const Pokemon = () => {
 
   return (
     <Layout>
-      <Button label="Back" onClick={() => navigate('/')} primary />
+      <Button label={t('back')} onClick={() => navigate('/')} primary />
 
       {/* Pokémon Details */}
       {pokemon ? (
@@ -34,11 +36,15 @@ export const Pokemon = () => {
             <img src={pokemon.sprites.back_shiny} alt={pokemon.name} />
             <img src={pokemon.sprites.front_shiny} alt={pokemon.name} />
           </div>
-          <p>Height: {pokemon.height}</p>
-          <p>Weight: {pokemon.weight}</p>
+          <p>
+            {t('height')}: {pokemon.height}
+          </p>
+          <p>
+            {t('weight')}: {pokemon.weight}
+          </p>
           <p>Types: {pokemon.types.map((type) => type.type.name).join(', ')}</p>
           <p>
-            Abilities:
+            {t('ability')}:
             {pokemon.abilities
               .map((ability) => ability.ability.name)
               .join(', ')}

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../styles/theme';
 
 export const Header = styled.div`
   width: 100%;
@@ -8,5 +9,5 @@ export const Header = styled.div`
   align-items: center;
   padding: 15px 20px;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${theme.colors.primary};
 `;
